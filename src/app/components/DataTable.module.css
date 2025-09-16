@@ -1,0 +1,146 @@
+.dataContainer {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  animation: fadeIn 0.6s ease;
+}
+
+.dataHeader {
+  margin-bottom: 2rem;
+}
+
+.dataHeader h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--dark-color);
+  margin-bottom: 0.5rem;
+}
+
+.dataHeader p {
+  color: var(--gray-color);
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.dataTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.dataTable th {
+  background-color: var(--light-gray);
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: var(--dark-color);
+  border-bottom: 2px solid var(--light-gray);
+}
+
+.dataTable td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--light-gray);
+  color: var(--dark-color);
+}
+
+.hiddenData {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hiddenData span {
+  color: var(--gray-color);
+  letter-spacing: 2px;
+}
+
+.revealButton {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.revealButton:hover {
+  background-color: var(--light-gray);
+}
+
+.revealedData {
+  color: var(--success-color);
+  font-weight: 500;
+}
+
+.loadingContainer, .errorContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  gap: 1rem;
+}
+
+.loadingContainer i, .errorContainer i {
+  font-size: 2rem;
+  color: var(--primary-color);
+}
+
+.errorContainer i {
+  color: var(--warning-color);
+}
+
+.retryButton {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.retryButton:hover {
+  background-color: var(--secondary-color);
+}
+
+.infoBox {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background-color: #e8f4fd;
+  border-radius: 6px;
+  border-left: 4px solid var(--primary-color);
+  margin-top: 2rem;
+}
+
+.infoBox i {
+  color: var(--primary-color);
+  font-size: 1.2rem;
+}
+
+.infoBox p {
+  margin: 0;
+  color: var(--dark-color);
+}
+
+@media (max-width: 768px) {
+  .dataContainer {
+    padding: 1rem;
+  }
+  
+  .dataTable th, 
+  .dataTable td {
+    padding: 0.75rem 0.5rem;
+  }
+}
