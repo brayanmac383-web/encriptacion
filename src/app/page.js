@@ -1,12 +1,12 @@
 'use client';
 
 import { useState } from 'react';
+import Header from './components/Header';
 import LoginForm from './components/LoginForm';
 import DataTable from './components/DataTable';
-import Header from './components/Header';
 import styles from './page.module.css';
 
-export default function Home() {
+export default function HomePage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentView, setCurrentView] = useState('login');
 

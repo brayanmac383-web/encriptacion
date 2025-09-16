@@ -1,6 +1,6 @@
 import styles from './Header.module.css';
 
-const Header = ({ isLoggedIn, onLogout }) => {
+export default function Header({ isLoggedIn, onLogout }) {
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
@@ -18,6 +18,4 @@ const Header = ({ isLoggedIn, onLogout }) => {
       )}
     </header>
   );
-};
-
-export default Header;
+}

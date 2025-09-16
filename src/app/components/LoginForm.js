@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import styles from './LoginForm.module.css';
 
-const LoginForm = ({ onLogin }) => {
+export default function LoginForm({ onLogin }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -102,6 +102,4 @@ const LoginForm = ({ onLogin }) => {
       </div>
     </div>
   );
-};
-
-export default LoginForm;
+}

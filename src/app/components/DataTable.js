@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import styles from './DataTable.module.css';
 
-const DataTable = () => {
+export default function DataTable() {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
@@ -147,6 +147,4 @@ const DataTable = () => {
       </div>
     </div>
   );
-};
-
-export default DataTable;
+}
