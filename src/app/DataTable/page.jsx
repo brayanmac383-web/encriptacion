@@ -1,22 +1,20 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import styles from './DataTable.module.css';
+import styles from './../components/DataTable.module.css';
 
 export default function DataTable() {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [error, setError] = useState(null);
   const [revealedData, setRevealedData] = useState({});
 
-  useEffect(() => {
-    fetchUsers();
-  }, []);
-
+  // Función para obtener los datos de la API de clientes
   const fetchUsers = async () => {
+    setIsLoading(true);
+    setError(null);
     try {
-      // Simulación de carga de datos desde PostgreSQL
-      const response = await fetch('/api/users');
+      const response = await fetch('/api/clients');
       const data = await response.json();
 
       if (response.ok) {
@@ -31,6 +29,7 @@ export default function DataTable() {
     }
   };
 
+  // Función para revelar datos encriptados
   const revealInfo = async (userId, field) => {
     try {
       const response = await fetch('/api/reveal', {
@@ -46,29 +45,27 @@ export default function DataTable() {
       if (response.ok) {
         setRevealedData(prev => ({
           ...prev,
-          [`${userId}-${field}`]: data.value
+          [`${userId}-${field}`]: data.value,
         }));
       } else {
-        setError(data.message || 'Error al revelar la información');
+        alert(data.message || 'No se pudo revelar la información.');
       }
     } catch (error) {
-      setError('Error de conexión con el servidor');
+      alert('Error de conexión con el servidor');
     }
   };
 
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
   if (isLoading) {
-    return (
-      <div className={styles.loadingContainer}>
-        <i className="fas fa-spinner fa-spin"></i>
-        <p>Cargando datos...</p>
-      </div>
-    );
+    return <div>Cargando...</div>;
   }
 
   if (error) {
     return (
       <div className={styles.errorContainer}>
-        <i className="fas fa-exclamation-circle"></i>
         <p>{error}</p>
         <button onClick={fetchUsers} className={styles.retryButton}>
           Reintentar
@@ -77,15 +74,22 @@ export default function DataTable() {
     );
   }
 
-  return (
-    <div className={styles.dataContainer}>
-      <div className={styles.dataHeader}>
-        <h2>Gestión de Usuarios</h2>
-        <p>Información de personas registradas en el sistema</p>
+  if (users.length === 0) {
+    return (
+      <div className={styles.noUsersContainer}>
+        <p>No se encontraron usuarios.</p>
       </div>
+    );
+  }
 
-      <div className={styles.tableWrapper}>
-        <table className={styles.dataTable}>
+  return (
+    <div className={styles.container}>
+      <header className={styles.header}>
+        <h1>Gestión de Usuarios</h1>
+        <p>Información de personas registradas en el sistema</p>
+      </header>
+      <div className={styles.tableContainer}>
+        <table className={styles.table}>
           <thead>
             <tr>
               <th>Documento</th>
@@ -96,19 +100,17 @@ export default function DataTable() {
           </thead>
           <tbody>
             {users.map(user => (
-              <tr key={user.id}>
-                <td>{user.document}</td>
-                <td>{user.name}</td>
+              <tr key={user.id_client}>
+                <td>{user.cc}</td>
+                <td>{user.nombre}</td>
                 <td>
-                  {revealedData[`${user.id}-email`] ? (
-                    <span className={styles.revealedData}>
-                      {revealedData[`${user.id}-email`]}
-                    </span>
+                  {revealedData[`${user.id_client}-email`] ? (
+                    <span className={styles.revealedData}>{revealedData[`${user.id_client}-email`]}</span>
                   ) : (
                     <div className={styles.hiddenData}>
                       <span>•••••••••••</span>
                       <button
-                        onClick={() => revealInfo(user.id, 'email')}
+                        onClick={() => revealInfo(user.id_client, 'email')}
                         className={styles.revealButton}
                         title="Revelar correo"
                       >
@@ -118,15 +120,13 @@ export default function DataTable() {
                   )}
                 </td>
                 <td>
-                  {revealedData[`${user.id}-phone`] ? (
-                    <span className={styles.revealedData}>
-                      {revealedData[`${user.id}-phone`]}
-                    </span>
+                  {revealedData[`${user.id_client}-phone`] ? (
+                    <span className={styles.revealedData}>{revealedData[`${user.id_client}-phone`]}</span>
                   ) : (
                     <div className={styles.hiddenData}>
                       <span>•••••••••••</span>
                       <button
-                        onClick={() => revealInfo(user.id, 'phone')}
+                        onClick={() => revealInfo(user.id_client, 'phone')}
                         className={styles.revealButton}
                         title="Revelar celular"
                       >
@@ -140,10 +140,9 @@ export default function DataTable() {
           </tbody>
         </table>
       </div>
-
       <div className={styles.infoBox}>
         <i className="fas fa-info-circle"></i>
-        <p>Los datos sensibles están encriptados en la base de datos. Use el botón de ojo para revelarlos temporalmente.</p>
+        <span>Los datos sensibles están encriptados en la base de datos. Use el botón de ojo para revelarlos temporalmente.</span>
       </div>
     </div>
   );

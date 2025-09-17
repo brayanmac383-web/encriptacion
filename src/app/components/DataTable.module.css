@@ -1,146 +1,142 @@
-.dataContainer {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
-  width: 100%;
-  max-width: 1200px;
-  animation: fadeIn 0.6s ease;
+/* Contenedor principal para toda la página */
+.container {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f4f7f9;
+  min-height: 100vh;
+  color: #333;
 }
 
-.dataHeader {
-  margin-bottom: 2rem;
+/* Encabezado y título */
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.dataHeader h2 {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--dark-color);
-  margin-bottom: 0.5rem;
+.header h1 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin: 0;
 }
 
-.dataHeader p {
-  color: var(--gray-color);
+.header p {
+  font-size: 1rem;
+  color: #7f8c8d;
+  margin-top: 5px;
 }
 
-.tableWrapper {
+/* Estilos de la tabla */
+.tableContainer {
   overflow-x: auto;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.dataTable {
+.table {
   width: 100%;
   border-collapse: collapse;
+  margin: 0;
 }
 
-.dataTable th {
-  background-color: var(--light-gray);
-  padding: 1rem;
+.table th, .table td {
+  padding: 15px;
   text-align: left;
-  font-weight: 600;
-  color: var(--dark-color);
-  border-bottom: 2px solid var(--light-gray);
+  border-bottom: 1px solid #dfe6e9;
 }
 
-.dataTable td {
-  padding: 1rem;
-  border-bottom: 1px solid var(--light-gray);
-  color: var(--dark-color);
+.table th {
+  background-color: #3498db;
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.9rem;
 }
 
+.table tr:hover {
+  background-color: #ecf0f1;
+}
+
+/* Ocultar datos y botón de revelar */
 .hiddenData {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 10px;
 }
 
 .hiddenData span {
-  color: var(--gray-color);
-  letter-spacing: 2px;
+  font-size: 1.2rem;
+  color: #95a5a6;
 }
 
 .revealButton {
   background: none;
   border: none;
-  color: var(--primary-color);
   cursor: pointer;
-  padding: 0.25rem;
-  border-radius: 4px;
-  transition: background-color 0.2s;
+  color: #3498db;
+  transition: color 0.2s;
+  font-size: 1rem;
 }
 
 .revealButton:hover {
-  background-color: var(--light-gray);
+  color: #2980b9;
 }
 
+/* Estilo para los datos revelados */
 .revealedData {
-  color: var(--success-color);
-  font-weight: 500;
+  font-weight: bold;
+  color: #27ae60;
+  white-space: nowrap;
 }
 
-.loadingContainer, .errorContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 3rem;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  gap: 1rem;
+/* Mensajes de estado (carga, error, sin usuarios) */
+.errorContainer, .noUsersContainer {
+  text-align: center;
+  padding: 50px;
+  font-size: 1.2rem;
+  color: #e74c3c;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
 }
 
-.loadingContainer i, .errorContainer i {
-  font-size: 2rem;
-  color: var(--primary-color);
-}
-
-.errorContainer i {
-  color: var(--warning-color);
+.errorContainer p, .noUsersContainer p {
+  margin: 0;
 }
 
 .retryButton {
-  background-color: var(--primary-color);
-  color: white;
+  background-color: #3498db;
+  color: #fff;
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
+  padding: 10px 20px;
+  border-radius: 5px;
   cursor: pointer;
-  font-weight: 500;
+  margin-top: 20px;
   transition: background-color 0.2s;
 }
 
 .retryButton:hover {
-  background-color: var(--secondary-color);
+  background-color: #2980b9;
 }
 
+/* Caja de información */
 .infoBox {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 1rem;
-  background-color: #e8f4fd;
-  border-radius: 6px;
-  border-left: 4px solid var(--primary-color);
-  margin-top: 2rem;
+  justify-content: center;
+  padding: 15px;
+  margin-top: 20px;
+  background-color: #ecf0f1;
+  border-radius: 8px;
+  color: #7f8c8d;
+  font-size: 0.9rem;
 }
 
 .infoBox i {
-  color: var(--primary-color);
-  font-size: 1.2rem;
-}
-
-.infoBox p {
-  margin: 0;
-  color: var(--dark-color);
-}
-
-@media (max-width: 768px) {
-  .dataContainer {
-    padding: 1rem;
-  }
-  
-  .dataTable th, 
-  .dataTable td {
-    padding: 0.75rem 0.5rem;
-  }
+  margin-right: 10px;
 }

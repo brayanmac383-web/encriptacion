@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import Header from './components/Header';
 import LoginForm from './components/LoginForm';
-import DataTable from './components/DataTable';
 import styles from './page.module.css';
 
 export default function HomePage() {
